@@ -1,0 +1,61 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-title>
+            Station
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+    <ion-list>
+        <ion-item>
+            <ion-label position="fixed">Name</ion-label>
+            <div item-content>
+                <span>{{station.name}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Gas Level</ion-label>
+            <div item-content>
+                <span>{{station.gasLevel}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Benzene Level</ion-label>
+            <div item-content>
+                <span>{{station.benzeneLevel}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Last Tank Fill</ion-label>
+            <div item-content>
+                <span>{{station.lastTankFill | date:'medium'}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">City</ion-label>
+            <div item-content>
+                <span>{{station.city}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Location</ion-label>
+            <div item-content>
+                <span>{{station.location}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Map Url</ion-label>
+            <div item-content>
+                <span>{{station.mapUrl}}</span>
+            </div>
+        </ion-item>
+    </ion-list>
+
+    <ion-button expand="block" color="primary" (click)="open(station)">{{ 'EDIT_BUTTON' | translate }}</ion-button>
+    <ion-button expand="block" color="danger" (click)="deleteModal(station)">{{ 'DELETE_BUTTON' | translate }}</ion-button>
+
+</ion-content>

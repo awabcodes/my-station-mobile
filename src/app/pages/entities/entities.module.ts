@@ -16,6 +16,10 @@ const routes: Routes = [
     },
     canActivate: [UserRouteAccessService]
   }
+  , {
+    path: 'station',
+    loadChildren: './station/station.module#StationPageModule'
+  }
   /* jhipster-needle-add-entity-route - JHipster will add entity modules routes here */
 ];
 
