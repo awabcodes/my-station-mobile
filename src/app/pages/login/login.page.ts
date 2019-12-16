@@ -35,7 +35,7 @@ export class LoginPage implements OnInit {
   doLogin() {
     this.loginService.login(this.account).then(
       () => {
-        this.navController.navigateRoot('/tabs');
+        this.navController.navigateRoot('/home');
       },
       async err => {
         // Unable to log in

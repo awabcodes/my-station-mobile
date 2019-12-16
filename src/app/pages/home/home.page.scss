@@ -9,13 +9,54 @@
 
 /* wait autoprefixer update to allow simple generation of high pixel density media query */
 @media only screen and (-webkit-min-device-pixel-ratio: 2),
-  only screen and (min--moz-device-pixel-ratio: 2),
-  only screen and (-o-min-device-pixel-ratio: 2/1),
-  only screen and (min-device-pixel-ratio: 2),
-  only screen and (min-resolution: 192dpi),
-  only screen and (min-resolution: 2dppx) {
+only screen and (min--moz-device-pixel-ratio: 2),
+only screen and (-o-min-device-pixel-ratio: 2/1),
+only screen and (min-device-pixel-ratio: 2),
+only screen and (min-resolution: 192dpi),
+only screen and (min-resolution: 2dppx) {
   .hipster {
     background: url('../../../assets/img/hipster2x.png') no-repeat center top;
     background-size: contain;
   }
+}
+
+.progress {
+  height: 150px;
+  width: 25px;
+  margin: 10px;
+  background-color: #f5f5f5;
+  border: transparent;
+  position: relative;
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.gas-progress-bar {
+  width: 100% !important;
+  position: absolute;
+  bottom: 0;
+  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to top, #FFD600, #ff8c00);
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to top, #FFD600, #ff8c00);
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.ben-progress-bar {
+  width: 100% !important;
+  position: absolute;
+  bottom: 0;
+  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to top, #ff4d00, #b03804);
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to top, #ff4d00, #b03804);
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.p-absolute {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  padding-top: 5px;
+  text-align: center;
 }

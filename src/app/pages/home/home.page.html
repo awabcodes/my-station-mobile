@@ -13,8 +13,52 @@
 </ion-header>
 
 <ion-content class="ion-padding">
-  <p>{{ 'WELCOME_INTRO' | translate }}</p>
+  <ion-refresher [disabled]="plt.is('desktop')" slot="fixed" (ionRefresh)="loadAll($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
 
-  <span class="hipster"></span>
+  <ion-list>
+    <ion-card *ngFor="let station of stations; trackBy: trackId">
+      <ion-item (click)="view(station)">
+        <ion-label class="ion-text-wrap">
+          <ion-text color="primary">
+            <h2>{{station.name}}</h2>
+          </ion-text>
+          <p>{{station.lastTankFill | date:'medium'}}</p>
+          <p>{{station.city}}</p>
+          <p>{{station.location}}</p>
+        </ion-label>
+
+        <div class="progress">
+          <div class="gas-progress-bar" [style.height]="station.gasLevel + '%'">
+            <div class="p-absolute">
+              <i>{{ station.gasLevel }}%</i>
+            </div>
+          </div>
+        </div>
+
+        <div class="progress">
+          <div class="ben-progress-bar" [style.height]="station.benzeneLevel + '%'">
+            <div class="p-absolute">
+              <i>{{ station.benzeneLevel }}%</i>
+            </div>
+          </div>
+        </div>
+
+      </ion-item>
+    </ion-card>
+  </ion-list>
+
+  <ion-item *ngIf="!stations?.length">
+    <ion-label>
+      No Stations found.
+    </ion-label>
+  </ion-item>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="filter()">
+      <ion-icon name="options"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 
 </ion-content>
