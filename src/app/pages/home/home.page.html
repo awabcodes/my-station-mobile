@@ -1,25 +1,60 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="dark">
+    <ion-buttons slot="start">
+      <ion-button (click)="toggleFilters()">
+        <ion-icon name="options"></ion-icon>
+      </ion-button>
+    </ion-buttons>
     <ion-title>
       {{ 'WELCOME_TITLE' | translate }}, {{account?.firstName}}
     </ion-title>
     <ion-buttons slot="end">
       <ion-button (click)="logout()" id="logout">
-        {{ 'LOGOUT_TITLE' | translate }}
         <ion-icon slot="end" name="log-out"></ion-icon>
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding">
+<ion-content>
   <ion-refresher [disabled]="plt.is('desktop')" slot="fixed" (ionRefresh)="loadAll($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
 
+  <div *ngIf="isShowFilters">
+    <ion-searchbar [formControl]="searchControl"></ion-searchbar>
+
+    <ion-item>
+      <ion-label>{{ 'City' | translate }}</ion-label>
+      <ion-select id="field_city" interface="popover" [(ngModel)]="city" (ngModelChange)="loadAll()">
+        <ion-select-option [value]="null" selected></ion-select-option>
+        <ion-select-option [value]="Khartoum">Khartoum</ion-select-option>
+        <ion-select-option [value]="Bahri">Bahri</ion-select-option>
+        <ion-select-option [value]="Omdurman">Omdurman</ion-select-option>
+        <ion-select-option [value]="Omdurman">Shendi</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>{{ 'Gas' | translate }}</ion-label>
+      <ion-range min="0" max="100" step="10" snaps="true" [(ngModel)]="gasLevel" (ngModelChange)="loadAll()">
+        <ion-label slot="start">0</ion-label>
+        <ion-label slot="end">100 %</ion-label>
+      </ion-range>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>{{ 'Benzene' | translate }}</ion-label>
+      <ion-range min="0" max="100" step="10" snaps="true" [(ngModel)]="benLevel" (ngModelChange)="loadAll()">
+        <ion-label slot="start">0</ion-label>
+        <ion-label slot="end">100 %</ion-label>
+      </ion-range>
+    </ion-item>
+  </div>
+
   <ion-list>
-    <ion-card *ngFor="let station of stations; trackBy: trackId">
-      <ion-item (click)="view(station)">
+    <ion-card color="dark" *ngFor="let station of stations; trackBy: trackId">
+      <ion-item color="dark" (click)="view(station)">
         <ion-label class="ion-text-wrap">
           <ion-text color="primary">
             <h2>{{station.name}}</h2>
@@ -54,11 +89,5 @@
       No Stations found.
     </ion-label>
   </ion-item>
-
-  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button (click)="filter()">
-      <ion-icon name="options"></ion-icon>
-    </ion-fab-button>
-  </ion-fab>
 
 </ion-content>

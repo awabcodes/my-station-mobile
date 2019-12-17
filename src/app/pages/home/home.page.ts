@@ -7,6 +7,7 @@ import { Station, StationService } from '../entities/station';
 import { filter, map } from 'rxjs/operators';
 import { HttpResponse } from '@angular/common/http';
 import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
+import { FormControl } from '@angular/forms';
 
 
 @Component({
@@ -19,6 +20,14 @@ export class HomePage implements OnInit {
 
   stations: Station[];
 
+  isShowFilters: boolean;
+
+  public searchControl: FormControl;
+  city: string;
+  searchTerm: string;
+  gasLevel: number;
+  benLevel: number;
+
   constructor(
     public navController: NavController,
     private accountService: AccountService,
@@ -27,7 +36,9 @@ export class HomePage implements OnInit {
     private toastCtrl: ToastController,
     private iab: InAppBrowser,
     public plt: Platform
-  ) { }
+  ) {
+    this.searchControl = new FormControl();
+  }
 
   ngOnInit() {
     this.accountService.identity().then(account => {
@@ -39,10 +50,22 @@ export class HomePage implements OnInit {
     });
 
     this.loadAll();
+
+    this.searchControl.valueChanges
+      .subscribe(search => {
+        this.searchTerm = search;
+        this.loadAll();
+      });
   }
 
   async loadAll(refresher?) {
-    this.stationService.query().pipe(
+    this.stationService.query({
+      size: 9000000,
+      'name.contains': this.searchTerm ? this.searchTerm : '',
+      'city.contains': this.city ? this.city : '',
+      'gasLevel.greaterThanOrEqual': this.gasLevel ? this.gasLevel : '',
+      'benzeneLevel.greaterThanOrEqual': this.benLevel ? this.benLevel : ''
+    }).pipe(
       filter((res: HttpResponse<Station[]>) => res.ok),
       map((res: HttpResponse<Station[]>) => res.body)
     )
@@ -68,6 +91,10 @@ export class HomePage implements OnInit {
 
   view(station: Station) {
     const browser = this.iab.create(station.mapUrl, '_system');
+  }
+
+  toggleFilters() {
+    this.isShowFilters = !this.isShowFilters;
   }
 
   isAuthenticated() {
