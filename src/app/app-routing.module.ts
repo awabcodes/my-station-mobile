@@ -7,7 +7,9 @@ const routes: Routes = [
   // { path: 'tabs', loadChildren: './pages/tabs/tabs.module#TabsPageModule' },
   { path: 'login', loadChildren: './pages/login/login.module#LoginPageModule' },
   { path: 'signup', loadChildren: './pages/signup/signup.module#SignupPageModule' },
-  { path: 'accessdenied', redirectTo: '', pathMatch: 'full' }
+  { path: 'accessdenied', redirectTo: '', pathMatch: 'full' },
+  { path: 'about-us', loadChildren: './pages/about-us/about-us.module#AboutUsPageModule' },
+  { path: 'suggestions', loadChildren: './pages/suggestions/suggestions.module#SuggestionsPageModule' }
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })],

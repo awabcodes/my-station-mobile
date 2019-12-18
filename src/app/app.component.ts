@@ -9,12 +9,14 @@ import { TranslateService } from '@ngx-translate/core';
   templateUrl: 'app.component.html'
 })
 export class AppComponent {
+  navigate: { title: string; url: string; icon: string; }[];
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
     private translate: TranslateService
   ) {
+    this.sideMenu();
     this.initializeApp();
   }
 
@@ -41,5 +43,21 @@ export class AppComponent {
     // this.translate.get(['BACK_BUTTON_TEXT']).subscribe(values => {
     //   this.config.set('ios', 'backButtonText', values.BACK_BUTTON_TEXT);
     // });
+  }
+
+  sideMenu() {
+    this.navigate =
+      [
+        {
+          title: 'Suggestions',
+          url: '/suggestions',
+          icon: 'chatboxes'
+        },
+        {
+          title: 'About Us',
+          url: '/about-us',
+          icon: 'contacts'
+        }
+      ];
   }
 }

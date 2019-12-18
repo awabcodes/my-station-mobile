@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-toolbar color="dark">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Suggestions</ion-title>
+    <ion-buttons slot="end">
+      <ion-button [disabled]="!isReadyToSave" (click)="save()" color="secondary">
+        <span *ngIf="platform.is('ios')">Done</span>
+        <ion-icon name="md-checkmark" *ngIf="!platform.is('ios')"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form *ngIf="form" name="form" [formGroup]="form" (ngSubmit)="save()">
+    <ion-list>
+      <ion-item>
+        <ion-label position="floating">Title</ion-label>
+        <ion-input type="text" name="title" formControlName="title" required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Message</ion-label>
+        <ion-textarea rows="6" name="message" formControlName="message" required></ion-textarea>
+      </ion-item>
+    </ion-list>
+  </form>
+</ion-content>
