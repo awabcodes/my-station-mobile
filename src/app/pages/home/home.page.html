@@ -1,16 +1,11 @@
 <ion-header>
   <ion-toolbar color="dark">
-    <ion-buttons slot="start">
-      <ion-button (click)="toggleFilters()">
-        <ion-icon name="options"></ion-icon>
-      </ion-button>
-    </ion-buttons>
     <ion-title>
-      {{ 'WELCOME_TITLE' | translate }}, {{account?.firstName}}
+      {{ 'WELCOME_TITLE' | translate }}
     </ion-title>
     <ion-buttons slot="end">
-      <ion-button (click)="logout()" id="logout">
-        <ion-icon slot="end" name="log-out"></ion-icon>
+      <ion-button (click)="toggleFilters()">
+        <ion-icon name="options"></ion-icon>
       </ion-button>
     </ion-buttons>
   </ion-toolbar>

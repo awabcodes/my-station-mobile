@@ -11,10 +11,10 @@ const routes: Routes = [
   {
     path: '',
     component: HomePage,
-    data: {
-      authorities: ['ROLE_USER']
-    },
-    canActivate: [UserRouteAccessService]
+    // data: {
+    //   authorities: ['ROLE_USER']
+    // },
+    // canActivate: [UserRouteAccessService]
   }
 ];
 

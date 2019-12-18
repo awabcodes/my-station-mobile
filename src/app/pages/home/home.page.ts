@@ -41,13 +41,13 @@ export class HomePage implements OnInit {
   }
 
   ngOnInit() {
-    this.accountService.identity().then(account => {
-      if (account === null) {
-        this.goBackToHomePage();
-      } else {
-        this.account = account;
-      }
-    });
+    // this.accountService.identity().then(account => {
+    //   if (account === null) {
+    //     this.goBackToHomePage();
+    //   } else {
+    //     this.account = account;
+    //   }
+    // });
 
     this.loadAll();
 
